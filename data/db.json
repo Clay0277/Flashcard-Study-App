@@ -1,0 +1,29 @@
+{
+  "decks": [
+    {
+      "name": "dsbndndnedndfdf",
+      "description": "",
+      "id": 1
+    }
+  ],
+  "cards": [
+    {
+      "front": "jgfvhgchj",
+      "back": "gfmhfhjghjk",
+      "deckId": 1,
+      "id": 1
+    },
+    {
+      "front": "szrhgwhwhr",
+      "back": "hwrhrhwh",
+      "deckId": 1,
+      "id": 2
+    },
+    {
+      "front": "whwhwhrwhs",
+      "back": "rshshwshwhrwh",
+      "deckId": 1,
+      "id": 3
+    }
+  ]
+}

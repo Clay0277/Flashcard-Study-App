@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useNavigation } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import CreateDeckForm from "./CreateDeckForm";
 import NavBar from "../Common/NavBar";
 import { createDeck } from "../../utils/api/index";
@@ -12,7 +12,7 @@ function CreateDeck() {
     };
 
     const [formData, setFormData] = useState({...initialFormState})
-    const navigation = useNavigation();
+    const history = useHistory();
 
     //set form data 
     const handleChange = ({target}) => {
@@ -29,9 +29,9 @@ function CreateDeck() {
         async function deckCreate() {
             try {
                 const newDeck = await createDeck(formData);
-                navigation.push(`/decks/${newDeck.id}`);
+                history.push(`/decks/${newDeck.id}`);
             } catch (error) {
-                if (error===!"AbortError") {
+                if (error !== "AbortError") {
                     throw error;
                 }
             }

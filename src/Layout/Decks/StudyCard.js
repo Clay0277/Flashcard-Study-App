@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link, useParams } from "react-router-dom";
+import { useHistory, Link, useParams } from "react-router-dom";
 
 
 function StudyCard({cards}) {
@@ -9,7 +9,7 @@ function StudyCard({cards}) {
     };
 
     const { deckId } = useParams();
-    const navigate = useNavigate();
+    const history = useHistory();
     const [studySession, setStudySession] = useState({...initialState});
    
     //navigates to the next card
@@ -26,7 +26,7 @@ function StudyCard({cards}) {
             if(confirm) {
                 setStudySession(initialState);
             } else {
-                navigate.push("/");
+                history.push("/");
             }
         }
     }

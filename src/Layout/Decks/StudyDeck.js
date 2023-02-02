@@ -22,7 +22,7 @@ function StudyDeck(){
 
     }, [deckId]);
   
-      //displays the deck if it exists
+      //displays the deck if 
       if (Object.keys(deck).length) {
         return (
         <div>

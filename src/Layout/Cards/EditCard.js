@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigation } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import CardForm from "./CardForm";
 import NavBar from "../Common/NavBar";
 import { readDeck, readCard, updateCard } from "../../utils/api/index";
 
 function EditCard() {
     const { deckId, cardId } = useParams();
-    const navigation = useNavigation();
+    const history = useHistory();
     const [deck, setDeck] = useState({});
     const [card, setCard] = useState({});
 
@@ -32,7 +32,7 @@ function EditCard() {
         async function updateCardData() {
             try {
                 await updateCard(card);
-                navigation.push(`/decks/${deckId}`);
+                history.push(`/decks/${deckId}`);
             } catch (error) {
                 if (error.name!=="AbortError") {
                     throw error;

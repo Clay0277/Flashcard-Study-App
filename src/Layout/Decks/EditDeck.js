@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import { Link, useParams, useHistory } from "react-router-dom";
 import CreateDeckForm from "./CreateDeckForm";
 import NavBar from "../Common/NavBar";
 import { readDeck, updateDeck } from "../../utils/api/index";
@@ -13,7 +13,7 @@ function EditDeck() {
     };
 
     const [deck, setDeck] = useState({...initialFormState});
-    const navigate = useNavigate();
+    const history = useHistory();
     const { deckId } = useParams();
     
     //loads appropriate deck
@@ -43,7 +43,7 @@ function EditDeck() {
         event.preventDefault();
         async function updateDeckData() {
                 await updateDeck(deck);
-                navigate.push(`/decks/${deck.id}`);
+                history.push(`/decks/${deck.id}`);
         }
         updateDeckData();
     }

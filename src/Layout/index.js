@@ -1,5 +1,5 @@
-import React, { useEffect , useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import Header from "./Common/Header";
 import Home from "./Common/Home";
 import CreateDeck from "./Decks/CreateDeck";
@@ -13,44 +13,60 @@ import NotFound from "./NotFound";
 import { listDecks } from "../utils/api";
 
 function Layout() {
+  const [decks, setDecks] = useState([]);
 
- const [decks, setDecks] = useState([]);
+  useEffect(() => {
+    setDecks([]);
 
- useEffect(() => {
+    const abortController = new AbortController();
 
-  setDecks([]);
-  
-  const abortController = new AbortController();
-
-  async function loadDecks() {
-    try {
-      const loadedDecks = await listDecks();
-      setDecks(loadedDecks);
-    } catch (error) {
-      if (error.name !== "AbortError") {
-        throw error;
+    async function loadDecks() {
+      try {
+        const loadedDecks = await listDecks();
+        setDecks(loadedDecks);
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          throw error;
+        }
       }
     }
-  }
-  loadDecks();
-  return() => abortController.abort();
- }, []);
-  
+    loadDecks();
+    return () => abortController.abort();
+  }, []);
+
   return (
     <div>
       <Header />
       <div className="container">
-        <Routes>
-        <Route path="/" element={<Home decks={decks}/>}/>
-        <Route path={"/decks/new"} element={<CreateDeck />} />
-        <Route path={"/decks/:deckId/cards/:cardId/edit"} element={<EditCard />}/>
-        <Route path={"/decks/:deckId/cards/:cardId/study"} element={<StudyCard/>} />
-        <Route path={"/decks/:deckId/cards/new"} element={<AddCard />}/>
-        <Route path={"/decks/:deckId/edit"} element={<EditDeck />}/>
-        <Route path={"/decks/:deckId/study"} element={<StudyDeck />}/>
-        <Route path={"/decks/:deckId"} element={<Deck />}/>
-        <Route path="*" element={<NotFound />}/>
-        </Routes>
+        <Switch>
+          <Route exact path="/">
+            <Home decks={decks} />
+          </Route>
+          <Route exact path="/decks/new">
+            <CreateDeck />
+          </Route>
+          <Route exact path="/decks/:deckId/cards/:cardId/edit">
+            <EditCard />
+          </Route>
+          <Route exact path="/decks/:deckId/cards/:cardId/study">
+            <StudyCard />
+          </Route>
+          <Route exact path="/decks/:deckId/cards/new">
+            <AddCard />
+          </Route>
+          <Route exact path="/decks/:deckId/edit">
+            <EditDeck />
+          </Route>
+          <Route exact path="/decks/:deckId/study">
+            <StudyDeck />
+          </Route>
+          <Route exact path="/decks/:deckId">
+            <Deck />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
       </div>
     </div>
   );

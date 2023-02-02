@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams,  useNavigate } from "react-router-dom";
+import { Link, useParams,  useHistory } from "react-router-dom";
 import { readDeck, deleteDeck } from "../../utils/api/index";
 import NavBar from "../Common/NavBar";
 import CardsList from "../Cards/CardsList";
@@ -7,7 +7,7 @@ import CardsList from "../Cards/CardsList";
 
 function Deck() {
     const { deckId } = useParams();
-    const navigate = useNavigate();
+    const history = useHistory();
     const [deck, setDeck] = useState({});
 
 
@@ -27,7 +27,7 @@ function Deck() {
         const confirm = window.confirm("Delete this deck? You will not be able to recover it.");
         if (confirm) {
             await deleteDeck(deckId);
-            navigate.push("/");
+            history.push("/");
         }
     };
 

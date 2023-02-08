@@ -1,23 +1,4 @@
 {
-  "decks": [
-    {
-      "name": "dsbndndnedndfdf",
-      "description": "",
-      "id": 1
-    }
-  ],
-  "cards": [
-    {
-      "front": "whwhwhrwhs",
-      "back": "rshshwshwhrwh",
-      "deckId": 1,
-      "id": 3
-    },
-    {
-      "front": "axsacddsvs",
-      "back": "svsvsvs",
-      "deckId": 1,
-      "id": 4
-    }
-  ]
+  "decks": [],
+  "cards": []
 }

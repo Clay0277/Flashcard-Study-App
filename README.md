@@ -2,7 +2,7 @@
 An application that allows users to create, edit, and delete decks and cards within them for convenient studying.
 
 ## Links
-+ Live Demo
++ [Live Demo](https://clay0277.github.io/Project-_Flashcards-_Qualified-Clayton_Allmond-Solution/)
  
  ## Screenshots
  **Home Page**: allows users to view created decks or the option to navigate to the "create deck" page
